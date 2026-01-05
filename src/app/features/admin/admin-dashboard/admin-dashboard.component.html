@@ -1,0 +1,158 @@
+<div class="dashboard-container">
+  
+  <div class="sidebar">
+    <h3>Admin Panel</h3>
+    <ul>
+      <li [class.active]="activeTab === 'users'" (click)="activeTab = 'users'">Manage Users</li>
+      <li [class.active]="activeTab === 'add'" (click)="activeTab = 'add'">Add User</li>
+      <li [class.active]="activeTab === 'plans'" (click)="activeTab = 'plans'">Manage Plans</li>      
+      <li [class.active]="activeTab === 'policies'" (click)="activeTab = 'policies'">Manage Policies</li>    
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="top-bar">
+      
+      <div class="brand-section">
+        <h1>Admin Console</h1>
+        <p>System Overview & User Management</p>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-details">
+          <span class="admin-name">{{adminName}}</span>
+          <span class="admin-email">{{adminEmail}}</span>
+        </div>
+        <div class="admin-avatar">
+          {{adminName.charAt(0).toUpperCase()}}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="content-body">
+      
+      <!-- SECTION 1: USER LIST -->
+      <div *ngIf="activeTab === 'users'">
+        <div class="content-header">
+          <h3>System Users</h3>
+          <button class="btn-sexy" (click)="activeTab = 'add'">+ Add User</button>
+        </div>
+
+        <div class="table-card">
+          <table>
+            <thead>
+              <tr>
+                <th>User ID</th> <!-- Explicitly keeping User ID -->
+                <th>User Details</th>
+                <th>Email</th>
+                <th>Current Role</th>
+                <!-- Removed Org ID Column -->
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let u of users">
+                <td><strong>#{{u.userId}}</strong></td>
+                <td>
+                  <div class="user-info">
+                    <div class="avatar">{{u.username.charAt(0).toUpperCase()}}</div>
+                    <span class="name">{{u.username}}</span>
+                  </div>
+                </td>
+                <td>{{u.email}}</td>
+                <td><span class="role-badge" [ngClass]="u.role">{{u.role}}</span></td>
+                <td class="actions-cell">
+                  <button class="btn-outline-sm" (click)="openRoleModal(u)">Change Role</button>
+                  <button class="btn-icon delete" (click)="deleteUser(u.userId)">🗑️</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SECTION 2: ADD USER FORM -->
+      <div *ngIf="activeTab === 'add'" class="create-container">
+        
+        <div class="form-header-center">
+          <h2>Register New User</h2>
+          <p>Create credentials for internal staff or providers</p>
+        </div>
+
+        <div class="role-selector">
+          <div class="role-option" [class.selected]="creationType === 'agent'" (click)="creationType = 'agent'">
+            <span class="icon">🕵️</span> Agent
+          </div>
+          <div class="role-option" [class.selected]="creationType === 'claim'" (click)="creationType = 'claim'">
+            <span class="icon">⚖️</span> Claims Officer
+          </div>
+          <div class="role-option" [class.selected]="creationType === 'hospital'" (click)="creationType = 'hospital'">
+            <span class="icon">🏥</span> Hospital
+          </div>
+        </div>
+
+        <div class="form-card-sexy">
+          <form (ngSubmit)="onSubmitCreate()">
+            
+            <!-- FIXED: Using Grid to prevent overlapping -->
+            <div class="form-row-grid">
+              <div class="form-group">
+                <label>Username</label>
+                <input type="text" [(ngModel)]="newUser.username" name="username" placeholder="e.g. john.doe" required>
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" [(ngModel)]="newUser.email" name="email" placeholder="john@company.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" [(ngModel)]="newUser.password" name="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="form-group">
+              <label>Organization / Branch ID</label>
+              <input type="text" [(ngModel)]="newUser.organizationId" name="orgId" placeholder="e.g. HOSP-NY-01" required>
+              <small>Required for mapping claims.</small>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn-ghost" (click)="activeTab = 'users'">Cancel</button>
+              <button type="submit" class="btn-sexy">Create Account</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    <app-manage-plans *ngIf="activeTab === 'plans'"></app-manage-plans>
+    <app-manage-policies *ngIf="activeTab === 'policies'"></app-manage-policies>
+    </div>
+  </div>
+
+  <!-- ROLE CHANGE MODAL (Same as before) -->
+  <div class="modal-overlay" *ngIf="showRoleModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Change Role</h3>
+        <button class="close-btn" (click)="closeRoleModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <p>Select a new role for user: <strong>{{selectedUserForRoleUpdate?.username}}</strong></p>
+        <div class="form-group">
+          <label>Assign Role</label>
+          <select [(ngModel)]="selectedNewRole" class="modal-select">
+            <option *ngFor="let role of availableRoles" [value]="role">{{role}}</option>
+          </select>
+        </div>
+        <div class="warning-box">⚠️ Changing role updates permissions immediately.</div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" (click)="closeRoleModal()">Cancel</button>
+        <button class="btn-sexy" (click)="confirmRoleChange()">Update Role</button>
+      </div>
+    </div>
+  </div>
+
+</div>

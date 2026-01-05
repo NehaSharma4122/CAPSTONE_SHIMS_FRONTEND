@@ -1,0 +1,177 @@
+.plans-header {
+  background: var(--primary-gradient); /* Blue Gradient Header */
+  padding: 80px 0 100px; /* Extra bottom padding for overlap */
+  text-align: center;
+  color: white;
+  clip-path: ellipse(150% 100% at 50% 0%);
+}
+
+.plans-header h1 {
+  color: white;
+  margin-bottom: 15px;
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.plans-header p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+}
+
+.plans-container {
+  padding: 0 24px 80px;
+  margin-top: -60px; /* Pull grid up into the header */
+  position: relative;
+  z-index: 2;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 100px;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  margin-top: 40px;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--accent); /* Orange Spinner */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Modern Plan Card */
+.plan-card {
+  background: var(--white);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  transition: all 0.4s ease;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.plan-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-10px) scale(1.02);
+}
+
+/* Highlight top border on hover */
+.plan-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 6px;
+  background: var(--accent-gradient);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+  transform-origin: left;
+}
+
+.plan-card:hover::before {
+  transform: scaleX(1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 25px;
+}
+
+.card-header h3 {
+  font-size: 1.4rem;
+  color: var(--primary);
+  font-weight: 700;
+  max-width: 70%;
+  line-height: 1.3;
+}
+
+.badge {
+  background: #e0f7fa;
+  color: var(--teal);
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.price-section {
+  margin-bottom: 30px;
+  color: var(--text-dark);
+}
+
+.price-section .currency {
+  font-size: 1.5rem;
+  vertical-align: top;
+  color: var(--text-gray);
+}
+
+.price-section .amount {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.price-section .period {
+  color: var(--text-gray);
+  font-size: 1rem;
+}
+
+.divider {
+  height: 1px;
+  background: #eee;
+  margin: 25px 0;
+}
+
+.features-list {
+  list-style: none;
+  margin-bottom: 35px;
+}
+
+.features-list li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.features-list .label {
+  color: var(--text-gray);
+}
+
+.features-list .value {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Use the sexy button class logic here */
+.btn-block {
+  width: 100%;
+  text-align: center;
+  background: var(--accent-gradient); /* Orange Gradient */
+  color: white;
+  padding: 15px;
+  border-radius: 50px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(229, 114, 0, 0.3);
+  transition: all 0.3s;
+}
+
+.btn-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(229, 114, 0, 0.5);
+}

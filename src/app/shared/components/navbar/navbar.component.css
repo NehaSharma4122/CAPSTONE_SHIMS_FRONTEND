@@ -1,0 +1,172 @@
+.navbar {
+  background: var(--white);
+  height: 80px;
+  box-shadow: var(--shadow-card); /* New soft shadow */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(10px); /* Glassmorphism effect if supported */
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.nav-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.nav-logo span {
+  color: var(--teal); /* Updated to Teal */
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  padding: 10px 0;
+  transition: color 0.2s;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--accent); /* Hover turns orange */
+}
+
+.arrow {
+  border: solid var(--text-gray);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  margin-left: 5px;
+  transform: rotate(45deg);
+  margin-bottom: 2px;
+  transition: transform 0.2s;
+}
+
+.has-dropdown:hover .arrow {
+  transform: rotate(225deg); /* Flip arrow on hover */
+  border-color: var(--accent);
+}
+
+/* Dropdown Styles */
+.has-dropdown {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: -20px; /* Center alignment adjustment */
+  background: var(--white);
+  min-width: 260px;
+  box-shadow: var(--shadow-hover); /* Deeper shadow */
+  border-radius: var(--radius-sm);
+  padding: 15px 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncy effect */
+  border-top: 4px solid var(--accent);
+}
+
+.dropdown li a {
+  display: block;
+  padding: 12px 25px;
+  text-decoration: none;
+  color: var(--text-gray);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.dropdown li a:hover {
+  background: #fff8e1; /* Light orange tint */
+  color: var(--accent);
+  padding-left: 30px; /* Slide effect */
+}
+
+/* Show dropdown on hover */
+.has-dropdown:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-actions .login-link {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 700;
+  transition: color 0.2s;
+}
+
+.nav-actions .login-link:hover {
+  color: var(--accent);
+}
+
+/* Updated Register Button */
+.btn-sm {
+  background: var(--primary-gradient); /* Use the new Blue gradient */
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 54, 102, 0.3);
+  transition: transform 0.2s;
+  border-width: 0px;
+}
+
+.btn-sm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 54, 102, 0.4);
+}
+
+.btn-ghost-sm {
+  background: transparent; border: none; color: #666; font-weight: 600; cursor: pointer;
+}
+.btn-ghost-sm:hover { color: var(--primary); text-decoration: underline; }
+.welcome-msg { font-weight: 600; color: var(--primary); margin-right: 10px; }
+
+.btn-ghost {
+    background: black;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 5px 15px rgba(229, 114, 0, 0.4);
+    transition: transform 0.2s;
+    display: inline-block;
+    margin-top: 0px;
+}
+
+.btn-ghost:hover {
+    transform: scale(1.05);
+}

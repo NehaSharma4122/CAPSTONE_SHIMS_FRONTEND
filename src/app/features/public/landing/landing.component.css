@@ -1,0 +1,131 @@
+.hero-section {
+  background: var(--primary-gradient); /* New Gradient */
+  padding: 140px 0 160px; /* More vertical space */
+  color: var(--white);
+  /* Clip Path for the sexy curve */
+  clip-path: ellipse(150% 100% at 50% 0%);
+  margin-bottom: -40px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.hero-content h1 .highlight {
+  color: var(--teal); /* Teal pops against dark blue */
+}
+
+.hero-sub {
+  font-size: 1.35rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+/* Updated Outline Button */
+.btn-outline-white {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-white:hover {
+  background: white;
+  color: var(--primary);
+  border-color: white;
+}
+
+.section {
+  padding: 80px 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.section-desc {
+  color: var(--text-gray);
+  margin-bottom: 50px;
+  font-size: 1.1rem;
+}
+
+/* Updated Path Card to match 'Feature Card' style */
+.path-card {
+  background: var(--white);
+  padding: 40px 30px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-bottom: 5px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.path-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-hover);
+  border-bottom-color: var(--accent); /* Orange underline on hover */
+}
+
+.icon-wrap {
+  font-size: 3.5rem;
+  margin-bottom: 25px;
+  display: inline-block;
+  background: var(--light-bg);
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.path-card h3 {
+  margin-bottom: 15px;
+  color: var(--primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.path-card p {
+  color: var(--text-gray);
+  margin-bottom: 25px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.link-arrow {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: margin-left 0.2s;
+}
+
+.link-arrow:hover {
+  margin-left: 5px; /* Slide arrow effect */
+}

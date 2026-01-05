@@ -1,0 +1,57 @@
+<nav class="navbar">
+  <div class="container nav-container">
+    <!-- Brand -->
+    <a routerLink="/" class="nav-logo">
+      Insure<span>Plus</span>
+    </a>
+
+    <!-- Navigation Links -->
+    <ul class="nav-menu">
+      
+      <!-- Home Dropdown -->
+      <li class="nav-item has-dropdown">
+        <a routerLink="/" class="nav-link">Home <i class="arrow down"></i></a>
+        <ul class="dropdown">
+          <li><a routerLink="/info/individuals">For Individuals & Families</a></li>
+          <li><a routerLink="/info/providers">For Providers/Hospitals</a></li>
+          <li><a routerLink="/info/employees">For Employees</a></li>
+        </ul>
+      </li>
+
+      <!-- Products Dropdown -->
+      <li class="nav-item has-dropdown">
+        <a routerLink="/products/plans" class="nav-link">Products <i class="arrow down"></i></a>
+        <ul class="dropdown">
+          <li><a routerLink="/products/rules">Policy Rules & Info</a></li>
+          <li><a routerLink="/products/plans">Browse All Plans</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a routerLink="/contact" class="nav-link">Contact Us</a>
+      </li>
+    </ul>
+
+    <!-- Auth Actions -->
+    <div class="nav-actions">
+      <ng-container *ngIf="!(isLoggedIn$ | async)">
+
+      <a routerLink="/auth/login" class="login-link">Log In</a>
+      <a routerLink="/auth/register" class="btn btn-primary btn-sm">Register</a>
+      </ng-container>
+
+      <ng-container *ngIf="(isLoggedIn$ | async)">
+        <span style="font-weight:600; color:var(--primary); margin-right:10px;cursor:pointer;">Hi, {{username}}</span>
+        
+        <button (click)="goToDashboard()" class="btn btn-primary btn-sm">
+           Dashboard
+        </button>
+        
+        <!-- THE LOGOUT BUTTON IS NOW ONLY HERE -->
+        <button (click)="logout()" class="btn-ghost">
+           Log Out
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</nav>

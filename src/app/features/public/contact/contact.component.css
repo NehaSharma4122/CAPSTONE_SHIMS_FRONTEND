@@ -1,0 +1,126 @@
+/* Header */
+.contact-header {
+  background: var(--primary-gradient);
+  padding: 80px 0 120px;
+  text-align: center;
+  color: white;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.contact-header h1 { font-size: 3rem; margin-bottom: 10px; font-weight: 800; }
+.contact-header p { opacity: 0.9; font-size: 1.2rem; }
+
+.contact-body { margin-top: -60px; position: relative; z-index: 2; padding-bottom: 80px; }
+
+/* Info Cards Override */
+.info-cards .feature-card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-circle {
+  width: 60px; height: 60px;
+  background: var(--light-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--teal);
+}
+
+.highlight-info {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 5px 0;
+}
+
+.sm-text { font-size: 0.85rem; color: #888; }
+.text-gray { color: var(--text-gray); margin: 0; }
+
+/* Form Section */
+.form-section {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+  .form-section { grid-template-columns: 1fr; }
+}
+
+.form-wrapper { padding: 50px; }
+.form-wrapper h2 { color: var(--primary); margin-bottom: 30px; }
+
+.form-group { margin-bottom: 20px; }
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--dark);
+  font-size: 0.9rem;
+}
+
+.modern-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: var(--font-main);
+  transition: all 0.3s;
+  background: #f9f9f9;
+}
+
+.modern-input:focus {
+  outline: none;
+  border-color: var(--teal);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(0, 169, 206, 0.1);
+}
+
+/* Map Side */
+.map-wrapper {
+  background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1353&q=80') no-repeat center center/cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.map-overlay {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  max-width: 300px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.map-overlay h3 { color: var(--primary); margin-bottom: 10px; }
+.map-overlay p { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 20px; }
+
+.btn-outline-dark {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-outline-dark:hover {
+  background: var(--primary);
+  color: white;
+}

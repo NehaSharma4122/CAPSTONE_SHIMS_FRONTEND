@@ -1,0 +1,36 @@
+.stats-bar {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.stat h2 {
+  font-size: 3rem;
+  color: var(--accent);
+  margin: 0;
+  line-height: 1;
+}
+
+.stat span {
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  background: #e0f7fa;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}

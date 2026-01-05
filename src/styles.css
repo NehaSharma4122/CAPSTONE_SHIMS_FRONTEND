@@ -1,0 +1,150 @@
+/* :root {
+    --primary: #003666;
+    --primary-gradient: linear-gradient(135deg, #005691 0%, #003666 100%);
+    --accent: #e57200;
+    --accent-gradient: linear-gradient(135deg, #ff9f00 0%, #e57200 100%);
+    --teal: #00a9ce;
+    --light-bg: #f4f8fb;
+    --white: #ffffff;
+    --text-dark: #222222;
+    --text-gray: #555555;
+
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 20px 40px rgba(0, 50, 100, 0.15);
+    --radius-lg: 16px;
+    --radius-sm: 8px;
+    --font-main: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+} */
+:root {
+    /* Brand Palette - Deep Blue & Vibrant Orange */
+    --primary: #6a05c3;
+    /* Cigna Dark Blue */
+    --primary-gradient: linear-gradient(135deg, #6a05c3 0%, #003666 100%);
+    --accent: #629e2e;
+    /* Cigna/Vibrant Orange */
+    --accent-gradient: linear-gradient(135deg, #ff9f00 0%, #e57200 100%);
+    --teal: #00a9ce;
+    /* Secondary Teal */
+    --light-bg: #f4f8fb;
+    --white: #ffffff;
+    --text-dark: #222222;
+    --text-gray: #555555;
+
+    /* Modern UI Variables */
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 20px 40px rgba(0, 50, 100, 0.15);
+    --radius-lg: 16px;
+    --radius-sm: 8px;
+    --font-main: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+    margin: 0;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll from slanted backgrounds */
+}
+
+/* --- Sexy Hero Section Utility --- */
+.hero-curve {
+    position: relative;
+    background: var(--primary-gradient);
+    color: white;
+    padding: 120px 0 180px;
+    /* Extra padding at bottom for curve */
+    clip-path: ellipse(150% 100% at 50% 0%);
+    text-align: center;
+    margin-bottom: -60px;
+    /* Pull content up */
+}
+
+.hero-curve h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.hero-curve p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Container & Grid --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+/* --- Modern Cards --- */
+.feature-card {
+    background: white;
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-bottom: 5px solid transparent;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+    border-bottom-color: var(--accent);
+}
+
+.feature-card h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+/* --- Typography Utilities --- */
+.highlight-text {
+    color: var(--accent);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+/* --- Buttons --- */
+.btn-sexy {
+    background: var(--accent-gradient);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 5px 15px rgba(229, 114, 0, 0.4);
+    transition: transform 0.2s;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.btn-sexy:hover {
+    transform: scale(1.05);
+}

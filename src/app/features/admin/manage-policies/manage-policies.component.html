@@ -1,0 +1,120 @@
+<div class="policy-wrapper">
+
+  <!-- Header & Search -->
+  <div class="header-bar">
+    <div class="search-section">
+      <input 
+        type="number" 
+        placeholder="Filter by User ID..." 
+        [(ngModel)]="searchUserId" 
+        class="search-input"
+      >
+      <button class="btn-sexy" (click)="searchByUser()">Search</button>
+      <button *ngIf="searchUserId" class="btn-ghost" (click)="searchUserId=''; loadAllPolicies()">Reset</button>
+    </div>
+    <div class="stats-badge">
+      Total Policies: <strong>{{policies.length}}</strong>
+    </div>
+  </div>
+
+  <!-- Policies Table -->
+  <div class="table-card">
+    <table *ngIf="policies.length > 0; else noData">
+      <thead>
+        <tr>
+          <th>Policy ID</th>
+          <th>Plan Details</th>
+          <th>User ID</th>
+          <th>Dates</th>
+          <th>Status</th>
+          <th>Premium Paid</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of policies">
+          <td><strong>#{{p.id}}</strong></td>
+          <!-- Updated to access nested Plan object -->
+          <td>
+            <div class="plan-info">
+              <span class="plan-name">{{p.plan.planName}}</span>
+              <span class="plan-id">ID: {{p.plan.id}}</span>
+            </div>
+          </td>
+          <td>
+            <span class="user-badge">User: {{p.userId}}</span>
+          </td>
+          <td class="date-col">
+            <!-- Updated date fields based on JSON -->
+            <div><small>Start:</small> {{p.startDate | date:'mediumDate'}}</div>
+            <div><small>Exp:</small> {{p.expiryDate | date:'mediumDate'}}</div>
+          </td>
+          <td>
+            <!-- Updated to policyStatus -->
+            <span class="status-badge" [ngClass]="getStatusClass(p.policyStatus)">
+              {{p.policyStatus}}
+            </span>
+          </td>
+          <!-- Updated to premiumPaid -->
+          <td class="amt-col">₹{{p.premiumPaid | number}}</td>
+          <td class="actions-cell">
+            <button class="btn-icon view" title="View Details" (click)="viewDetails(p.id)">👁️</button>
+            <button class="btn-icon delete" title="Delete Policy" (click)="deletePolicy(p.id)">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noData>
+      <div class="empty-state">
+        <p>No policies found in the system.</p>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- DETAILS MODAL -->
+  <div class="modal-overlay" *ngIf="showDetailsModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Policy Details <span class="highlight">#{{selectedPolicy?.id}}</span></h3>
+        <button class="close-btn" (click)="closeModal()">×</button>
+      </div>
+      
+      <div class="modal-body" *ngIf="selectedPolicy">
+        <div class="detail-row">
+          <label>Plan Name:</label> <span>{{selectedPolicy.plan.planName}}</span>
+        </div>
+        <div class="detail-row">
+          <label>Description:</label> <span>{{selectedPolicy.plan.description}}</span>
+        </div>
+        <div class="detail-row">
+          <label>User ID:</label> <span>{{selectedPolicy.userId}}</span>
+        </div>
+        <div class="detail-row">
+          <label>Premium Paid:</label> <span class="amt">₹{{selectedPolicy.premiumPaid | number}}</span>
+        </div>
+        <div class="detail-row">
+          <label>Max Coverage:</label> <span>₹{{selectedPolicy.plan.maxCoverageAmount | number}}</span>
+        </div>
+        <div class="detail-row">
+          <label>Renewal Count:</label> <span>{{selectedPolicy.renewalCount}}</span>
+        </div>
+        <div class="detail-row">
+          <label>Period:</label> 
+          <span>{{selectedPolicy.startDate | date}} — {{selectedPolicy.expiryDate | date}}</span>
+        </div>
+        <div class="detail-row">
+          <label>Status:</label> 
+          <span class="status-badge" [ngClass]="getStatusClass(selectedPolicy.policyStatus)">
+            {{selectedPolicy.policyStatus}}
+          </span>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-sexy" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+</div>

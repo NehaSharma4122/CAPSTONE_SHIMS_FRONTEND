@@ -1,0 +1,53 @@
+<div class="plans-header">
+  <div class="container">
+    <h1>Our Insurance Plans</h1>
+    <p>Flexible options designed to keep you covered.</p>
+  </div>
+</div>
+
+<div class="container plans-container">
+  
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading available plans...</p>
+  </div>
+
+  <!-- Plans Grid -->
+  <div *ngIf="!loading" class="grid-3">
+    <div class="plan-card" *ngFor="let plan of plans">
+      <div class="card-header">
+        <h3>{{ plan.planName }}</h3>
+        <!-- You can add a category if your entity has it, otherwise static -->
+        <span class="badge">Medical</span>
+      </div>
+      
+      <div class="price-section">
+        <span class="currency">₹</span>
+        <span class="amount">{{ plan.premiumAmount }}</span>
+        <span class="period">/year</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <ul class="features-list">
+        <li>
+          <span class="label">Total Coverage</span>
+          <span class="value">{{ plan.coverageLimitValue }} {{ plan.coverageLimitType }}</span>
+        </li>
+        <li>
+          <span class="label">Network Hospitals</span>
+          <span class="value">500+</span>
+        </li>
+        <li>
+          <span class="label">Tax Benefit</span>
+          <span class="value">Available</span>
+        </li>
+      </ul>
+
+      <button class="btn btn-primary btn-block" (click)="enroll(plan)">
+        Enroll Now
+      </button>
+    </div>
+  </div>
+</div>

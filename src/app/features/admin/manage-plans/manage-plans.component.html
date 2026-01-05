@@ -1,0 +1,96 @@
+<div class="plans-wrapper">
+  
+  <!-- Header with Search & Add Button -->
+  <div class="plans-header-bar">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input 
+        type="text" 
+        placeholder="Search by Name or ID..." 
+        [(ngModel)]="searchTerm" 
+        (input)="onSearch()"
+      >
+    </div>
+    <button class="btn-sexy" (click)="openAddModal()">+ Create New Plan</button>
+  </div>
+
+  <!-- Plans Grid (Cards look better than tables for Plans) -->
+  <div class="plans-grid">
+    <div class="plan-card" *ngFor="let plan of filteredPlans">
+      <div class="card-top">
+        <span class="id-badge">ID: {{plan.id}}</span>
+        <div class="action-dots">
+          <button class="btn-icon edit" (click)="openEditModal(plan)">✏️</button>
+          <button class="btn-icon delete" (click)="deletePlan(plan.id)">🗑️</button>
+        </div>
+      </div>
+
+      <h3>{{plan.planName}}</h3>
+      <p class="desc">{{plan.description}}</p>
+
+      <div class="pricing">
+        <span class="curr">₹</span>
+        <span class="amt">{{plan.premiumAmount | number}}</span>
+        <span class="per">/ yr</span>
+      </div>
+
+      <div class="coverage-info">
+        <span class="label">Coverage Limit:</span>
+        <span class="value">
+          {{plan.coverageLimitValue}} 
+          <span class="type-badge" [ngClass]="plan.coverageLimitType">{{plan.coverageLimitType}}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD/EDIT MODAL -->
+  <div class="modal-overlay" *ngIf="showModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{ isEditing ? 'Update Plan' : 'Create New Plan' }}</h3>
+        <button class="close-btn" (click)="closeModal()">×</button>
+      </div>
+
+      <div class="modal-body">
+        <form (ngSubmit)="savePlan()">
+          
+            <div class="form-group">
+                <label>Plan Name</label>
+                <input type="text" [(ngModel)]="currentPlan.planName" name="pName" placeholder="e.g. Family Gold" required>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea [(ngModel)]="currentPlan.description" name="pDesc" rows="2" placeholder="What does it cover?" required></textarea>
+            </div>
+
+          
+            <div class="form-group">
+                <label>Premium Amount (₹)</label>
+                <input type="number" [(ngModel)]="currentPlan.premiumAmount" name="pPrem" required>
+            </div>
+            <div class="form-row-grid">
+                <div class="form-group">
+                <label>Coverage Type</label>
+                <select [(ngModel)]="currentPlan.coverageLimitType" name="pType" class="modal-select">
+                    <option value="AMOUNT">Flat Amount</option>
+                    <option value="PERCENT">Percentage</option>
+                </select>
+                </div>
+                <div class="form-group">
+                    <label>Coverage Value</label>
+                    <input type="number" [(ngModel)]="currentPlan.coverageLimitValue" name="pVal" placeholder="e.g. 500000 or 100" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-ghost" (click)="closeModal()">Cancel</button>
+                <button type="submit" class="btn-sexy">{{ isEditing ? 'Update' : 'Create' }}</button>
+            </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

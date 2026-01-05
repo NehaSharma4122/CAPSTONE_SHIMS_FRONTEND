@@ -1,0 +1,105 @@
+.page-wrapper {
+  padding: 80px 24px;
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.content-left {
+  flex: 2;
+  min-width: 320px;
+}
+
+.content-left h1 {
+  color: var(--primary);
+  margin-bottom: 15px;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.content-left .intro {
+  font-size: 1.25rem;
+  color: var(--text-gray);
+  margin-bottom: 50px;
+  line-height: 1.6;
+}
+
+.rule-card {
+  background: var(--white);
+  padding: 30px;
+  border-radius: var(--radius-sm);
+  /* The sexy left border */
+  border-left: 6px solid var(--teal);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 30px;
+  transition: transform 0.3s;
+}
+
+.rule-card:hover {
+  transform: translateX(10px); /* Slide right on hover */
+}
+
+.rule-card h3 {
+  color: var(--primary);
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.rule-card p,
+.rule-card li {
+  color: var(--text-gray);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.rule-card ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.sidebar {
+  flex: 1;
+  min-width: 280px;
+}
+
+/* Sidebar Box gets the Gradient Treatment */
+.help-box {
+  background: var(--primary-gradient);
+  color: var(--white);
+  padding: 40px 30px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-hover);
+  position: sticky;
+  top: 100px;
+}
+
+.help-box h4 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.help-box p {
+  margin-bottom: 30px;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+.help-box .btn-outline-white {
+  border: 2px solid rgba(255,255,255,0.5);
+  color: var(--white);
+  background: transparent;
+  padding: 12px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.help-box .btn-outline-white:hover {
+  background: var(--white);
+  color: var(--primary);
+  border-color: var(--white);
+}

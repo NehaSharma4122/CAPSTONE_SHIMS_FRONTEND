@@ -1,0 +1,43 @@
+<div class="provider-hero">
+  <div class="container hero-content">
+    <h1>Support for Healthcare <br> Professionals</h1>
+    <p>We streamline the paperwork so you can focus on what matters: patient care.</p>
+    <button class="btn-sexy">Join Our Network</button>
+  </div>
+</div>
+
+<div class="container section">
+  <h2 class="section-title">How We Help Providers</h2>
+  
+  <div class="grid-3">
+    <div class="feature-card">
+      <h3>Fast Claims Processing</h3>
+      <p>Our AI-driven claims engine approves 80% of cashless requests within 2 hours, ensuring better cash flow for your facility.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Dedicated Portal</h3>
+      <p>Real-time dashboard for Claims Officers to track payments, submit documents, and view patient eligibility instantly.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Patient Volume</h3>
+      <p>Join a network serving over 10 million members who actively seek out our "Preferred Provider" badges.</p>
+    </div>
+  </div>
+
+  <!-- Hospital Inventory Section -->
+  <div class="inventory-section">
+    <h2 class="section-title">Our Trusted Network Partners</h2>
+    <p class="text-center">A glimpse of leading hospitals already working with us.</p>
+    
+    <div class="hospital-grid">
+      <div class="hospital-card" *ngFor="let hosp of hospitals">
+        <div class="hosp-img">🏥</div>
+        <div class="hosp-info">
+          <h4>{{ hosp.name }}</h4>
+          <p class="location">📍 {{ hosp.location }}</p>
+          <span class="badge">Tier 1 Partner</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
