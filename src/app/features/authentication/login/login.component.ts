@@ -46,7 +46,7 @@ export class LoginComponent {
         this.router.navigate(['/claimoff/dashboard']); // Future placeholder
         break;
       default:
-        this.router.navigate(['/customer/dashboard']); // Customer goes to browse plans
+        this.router.navigate(['/products/plans']); // Customer goes to browse plans
     }
   }
 }

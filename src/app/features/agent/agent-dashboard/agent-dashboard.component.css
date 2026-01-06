@@ -1,0 +1,269 @@
+.dashboard-wrapper {
+    background: #f4f7f6;
+    /* min-height: 100vh; */
+    display: flex;
+    min-height: calc(100vh - 80px);
+}
+
+.sidebar {
+    width: 250px;
+    background: white;
+    border-right: 1px solid #eee;
+    padding: 20px;
+    z-index: 10;
+}
+
+.logo-area {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #003666;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.sidebar h3 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+.sidebar li {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #666;
+    margin-bottom: 5px;
+    transition: all 0.2s;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+    background: #e3f2fd;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- TOP BAR (Reused & Tweaked) --- */
+.top-bar {
+    height: 100px;
+    background: linear-gradient(135deg, #003666 0%, #005691 100%);
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 54, 102, 0.2);
+    color: white;
+}
+
+.brand-section h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: white;
+}
+
+.brand-section p {
+    margin: 4px 0 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.agent-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.agent-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.agent-details {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.agent-name {
+    display: block;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.agent-email {
+    font-size: 0.85rem;
+    color: #ffd180;
+    /* Subtle Gold/Orange for contrast */
+    font-weight: 500;
+    background-color: none;
+}
+
+.agent-avatar {
+    width: 45px;
+    height: 45px;
+    background: white;
+    color: #003666;
+    /* Match Primary Color */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* --- CONTENT --- */
+.content-body {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.action-header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.action-header h2 {
+    color: #333;
+    margin-left: 0;
+}
+
+.search-box {
+    position: relative;
+    margin: 30px;
+}
+
+.search-box input {
+    padding: 12px 15px 12px 40px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    width: 300px;
+    transition: all 0.2s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary);
+    width: 320px;
+}
+
+.search-box .icon {
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    color: #888;
+}
+
+/* GRID */
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.plan-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+    border-top: 5px solid var(--primary);
+}
+
+.plan-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #eee;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #666;
+}
+
+.plan-card h3 {
+    color: #003666;
+    margin: 0 0 10px;
+    font-size: 1.4rem;
+}
+
+.desc {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    height: 45px;
+    overflow: hidden;
+}
+
+.pricing {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.amt {
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+.per {
+    color: #999;
+}
+
+.features {
+    background: #fcfcfc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #f0f0f0;
+}
+
+.feat-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.btn-enroll {
+    width: 100%;
+    background: #e65100;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-enroll:hover {
+    background: #ef6c00;
+}

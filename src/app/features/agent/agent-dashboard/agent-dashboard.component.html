@@ -1,0 +1,71 @@
+<div class="dashboard-wrapper">
+  <div class="sidebar">
+    <div class="logo-area">Agent Portal</div>
+    <ul>
+      <li [class.active]="activeTab === 'enroll'" (click)="activeTab = 'enroll'">
+        <span class="icon">📋</span> Enroll New Policy
+      </li>
+      <li [class.active]="activeTab === 'manage'" (click)="activeTab = 'manage'">
+        <span class="icon">⚙️</span> Manage Customers
+      </li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="brand-section">
+        <h1>Agent Portal</h1>
+        <p>Policy Management & Enrollment</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-details">
+          <span class="agent-name">{{agentName}}</span>
+          <span class="agent-email">{{agentEmail}}</span>
+        </div>
+        <div class="agent-avatar">{{agentName.charAt(0).toUpperCase()}}</div>
+      </div>
+    </div>
+
+    <div class="content-body">
+      <div *ngIf="activeTab === 'enroll'" class="enroll-view">
+
+        <div class="action-header">
+          <h2>Available Insurance Plans</h2>
+          <div class="search-box">
+            <span class="icon">🔍</span>
+            <input 
+              type="text" 
+              placeholder="Search Plans..." 
+              [(ngModel)]="searchTerm" 
+              (input)="onSearch()"
+            >
+          </div>
+        </div>
+
+        <!-- PLAN GRID -->
+        <div class="plans-grid">
+          <div class="plan-card" *ngFor="let plan of filteredPlans">
+            <div class="card-badge">ID: {{plan.id}}</div>
+            <h3>{{plan.planName}}</h3>
+            <p class="desc">{{plan.description}}</p>
+            
+            <div class="pricing">
+              <span class="curr">₹</span>
+              <span class="amt">{{plan.premiumAmount | number}}</span>
+              <span class="per">/ year</span>
+            </div>
+
+            <div class="features">
+                <div class="feat-row">
+                    <span>Max Coverage:</span>
+                    <strong>{{plan.coverageLimitValue}} <small>{{plan.coverageLimitType}}</small></strong>
+                </div>
+            </div>
+
+            <button class="btn-enroll" (click)="goToEnroll(plan.id)">Enroll Customer →</button>
+          </div>
+        </div>
+      </div>
+      <app-manage-user-policies *ngIf="activeTab === 'manage'"></app-manage-user-policies>
+    </div>
+  </div>
+</div>

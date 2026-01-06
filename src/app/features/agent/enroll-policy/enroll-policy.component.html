@@ -1,0 +1,129 @@
+<div class="enroll-wrapper">
+  
+  <div class="split-layout">
+    
+    <!-- LEFT PANEL (Same as before) -->
+    <div class="left-panel" *ngIf="plan">
+      <button class="back-link" (click)="goBack()">← Back to Dashboard</button>
+      <div class="plan-hero">
+        <span class="badge">Selected Plan</span>
+        <h1>{{plan.planName}}</h1>
+        <p class="desc">{{plan.description}}</p>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Premium</label>
+          <span>₹{{plan.premiumAmount | number}}</span>
+        </div>
+        <div class="info-item">
+          <label>Coverage</label>
+          <span>{{plan.coverageLimitValue}} {{plan.coverageLimitType}}</span>
+        </div>
+        <div class="info-item">
+          <label>Plan ID</label>
+          <span>#{{plan.id}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+      
+      <!-- STATE 1: FORM -->
+      <div class="form-container" *ngIf="!enrollmentSuccess">
+        <h2>Enroll Customer</h2>
+        <p class="sub">Link a registered user to this plan.</p>
+
+        <!-- Step 1: Email Lookup -->
+        <div class="form-group">
+          <label>User Email Address</label>
+          <div class="input-group">
+            <input 
+              type="email" 
+              [(ngModel)]="userEmail" 
+              placeholder="customer@example.com" 
+              [class.input-error]="userSearchStatus === 'error'"
+              [disabled]="userSearchStatus === 'found' || isLoading"
+              (keyup.enter)="verifyUser()">
+            
+            <button class="btn-check" (click)="verifyUser()" [disabled]="userSearchStatus === 'found' || isLoading">
+              <!-- Loading Spinner Logic -->
+              <span *ngIf="isLoading" class="spinner-sm"></span>
+              <span *ngIf="!isLoading">Check</span>
+            </button>
+          </div>
+          
+          <div class="message-box error" *ngIf="userSearchStatus === 'error'">
+            <span class="icon">⚠️</span> {{ errorMessage }}
+          </div>
+
+          <div class="message-box success" *ngIf="userSearchStatus === 'found'">
+             <span class="icon">✓</span> User Verified: <strong>{{foundUserName}}</strong> (ID: {{foundUserId}})
+          </div>
+        </div>
+
+        <!-- Step 2: Confirm -->
+        <div class="action-area" *ngIf="userSearchStatus === 'found'">
+          <div class="summary">
+            Ready to enroll <strong>{{foundUserName}}</strong> into <strong>{{plan?.planName}}</strong>?
+          </div>
+          <button class="btn-confirm" (click)="confirmEnrollment()" [disabled]="isLoading">
+             <span *ngIf="isLoading" class="spinner-sm"></span>
+             <span *ngIf="!isLoading">Confirm Enrollment</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STATE 2: SUCCESS RECEIPT (Natural Look) -->
+      <div class="success-container" *ngIf="enrollmentSuccess">
+        <div class="success-header">
+          <div class="check-circle">✓</div>
+          <h2>Enrollment Complete!</h2>
+          <p>The policy has been successfully generated.</p>
+        </div>
+        
+        <!-- NEW NATURAL RECEIPT CARD -->
+        <div class="policy-receipt">
+          <div class="receipt-header">
+            <span class="rec-label">Policy No</span>
+            <span class="rec-id">#{{createdPolicy.id}}</span>
+          </div>
+          
+          <div class="receipt-grid">
+            <div class="rec-item">
+              <label>Plan Name</label>
+              <strong>{{createdPolicy.plan.planName}}</strong>
+            </div>
+            <div class="rec-item">
+              <label>User ID</label>
+              <strong>{{createdPolicy.userId}}</strong>
+            </div>
+            <div class="rec-item">
+              <label>Start Date</label>
+              <strong>{{createdPolicy.startDate | date:'mediumDate'}}</strong>
+            </div>
+            <div class="rec-item">
+              <label>Expiry Date</label>
+              <strong>{{createdPolicy.expiryDate | date:'mediumDate'}}</strong>
+            </div>
+            <div class="rec-item">
+              <label>Premium Paid</label>
+              <strong class="highlight-amt">₹{{createdPolicy.premiumPaid | number}}</strong>
+            </div>
+            <div class="rec-item">
+              <label>Renewal Count</label>
+              <strong class="highlight-amt">{{createdPolicy.renewalCount | number}}</strong>
+            </div>
+            <div class="rec-item full-width">
+                <label>Status</label>
+                <span class="status-badge active">ACTIVE</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-home" (click)="goBack()">Done</button>
+      </div>
+
+    </div>
+  </div>
+</div>

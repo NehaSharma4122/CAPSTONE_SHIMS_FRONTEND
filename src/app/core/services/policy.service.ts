@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({ providedIn: 'root' })
 export class PolicyService {
   private apiUrl = 'http://localhost:9000/plan-policy-service/api';
+  private authUrl = 'http://localhost:9000/authentication-service/api/auth';
 
   constructor(private http: HttpClient) {}
 
@@ -51,6 +52,9 @@ export class PolicyService {
     return this.http.post(`${this.apiUrl}/policy/enroll/${userId}/${planId}`, {}, this.getHeaders());
   }
 
+  lookupUserByEmail(email: string) {
+    return this.http.get<any>(`${this.authUrl}/user/userid/${email}`, this.getHeaders());
+  }
   // III. Renew
   renewPolicy(userId: number, policyId: number, remarks: string = '') {
     // Note: Controller snippet provided didn't show @RequestBody, but prompt did. 
@@ -62,7 +66,10 @@ export class PolicyService {
   suspendPolicy(userId: number, policyId: number) {
     return this.http.put(`${this.apiUrl}/policy/users/status/${userId}/${policyId}`, {}, this.getHeaders());
   }
-
+  
+  activatePolicy(userId: number, policyId: number) {
+    return this.http.put(`${this.apiUrl}/policy/users/status/activate/${userId}/${policyId}`, {}, this.getHeaders());
+  }
   // Get Single User Policy (Customer/Agent view)
   getUserPolicySpecific(userId: number, policyId: number) {
     return this.http.get(`${this.apiUrl}/policy/users/${userId}/${policyId}`, this.getHeaders());

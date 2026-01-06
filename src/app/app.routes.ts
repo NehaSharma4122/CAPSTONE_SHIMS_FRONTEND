@@ -9,6 +9,8 @@ import { ContactComponent } from './features/public/contact/contact.component';
 import { LoginComponent } from './features/authentication/login/login.component';
 import { RegisterComponent } from './features/authentication/register/register.component';
 import { AdminDashboardComponent } from './features/admin/admin-dashboard/admin-dashboard';
+import { AgentDashboardComponent } from './features/agent/agent-dashboard/agent-dashboard.component';
+import { EnrollPolicyComponent } from './features/agent/enroll-policy/enroll-policy.component';
 
 
 export const routes: Routes = [
@@ -69,6 +71,8 @@ export const routes: Routes = [
   { path: 'info/individuals', component: IndividualsComponent, title: 'For Individuals' },
   { path: 'info/providers', component: ProvidersComponent, title: 'For Providers' },
   { path: 'info/employees', component: EmployeesComponent, title: 'For Employees' },
+  { path: 'agent/dashboard', component: AgentDashboardComponent, title: 'Agent Dashboard' }, 
+   { path: 'agent/enroll/:id', component: EnrollPolicyComponent, title: 'Enroll Policy' }, 
   { 
     path: '**', 
     redirectTo: '' 

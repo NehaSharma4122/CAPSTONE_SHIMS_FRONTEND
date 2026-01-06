@@ -1,0 +1,108 @@
+<div class="manage-wrapper">
+
+    <h2>Manage Customer Policies</h2>
+    <p class="sub-text">Search for a customer to renew or manage their existing policies.</p>
+
+    <!-- SEARCH BAR -->
+    <div class="search-bar-row">
+        <div class="input-wrapper">
+            <input type="email" placeholder="Enter Customer Email..." [(ngModel)]="userEmail"
+                (keyup.enter)="searchUser()">
+            <button class="btn-search" (click)="searchUser()" [disabled]="isLoadingUser">
+                {{ isLoadingUser ? '...' : 'Find User' }}
+            </button>
+        </div>
+        <div class="error-msg" *ngIf="searchError">⚠️ {{searchError}}</div>
+    </div>
+
+    <!-- USER FOUND & POLICY LIST -->
+    <div class="results-area" *ngIf="foundUser">
+
+        <div class="user-header">
+            <div class="avatar">{{foundUser.username.charAt(0).toUpperCase()}}</div>
+            <div>
+                <h3>{{foundUser.username}}</h3>
+                <p>ID: #{{foundUser.userId}} | {{foundUser.email}}</p>
+            </div>
+        </div>
+
+        <!-- POLICIES GRID -->
+        <div class="policies-grid" *ngIf="userPolicies.length > 0; else noPolicies">
+            <div class="policy-card" *ngFor="let p of userPolicies">
+                <div class="card-header">
+                    <div class="id-group">
+                        <span class="p-icon">📄</span>
+                        <span class="p-id">Policy #{{p.id}}</span>
+                    </div>
+                    <span class="status" [class.active]="p.policyStatus === 'ACTIVE'"
+                        [class.suspended]="p.policyStatus === 'SUSPENDED'">
+                        {{p.policyStatus}}
+                    </span>
+                </div>
+
+                <!-- Body: Plan Name & Key Money Stats -->
+                <div class="card-body">
+                    <h4 class="plan-name">{{p.plan.planName}}</h4>
+                    <p class="plan-desc">{{p.plan.description}}</p>
+
+                    <div class="info-grid">
+                        <div class="info-block">
+                            <label>Premium Paid</label>
+                            <span class="money">₹{{p.premiumPaid | number}}</span>
+                        </div>
+                        <div class="info-block">
+                            <label>Coverage Limit</label>
+                            <span class="money">₹{{p.plan.maxCoverageAmount | number}}</span>
+                        </div>
+                    </div>
+
+                    <!-- Divider Line -->
+                    <div class="divider"></div>
+
+                    <!-- Timeline & Meta -->
+                    <div class="meta-row">
+                        <div class="date-group">
+                            <span class="date-label">Start:</span> {{p.startDate | date:'mediumDate'}} <br>
+                            <span class="date-label">Exp:</span> <span class="exp-date">{{p.expiryDate |
+                                date:'mediumDate'}}</span>
+                        </div>
+                        <div class="renewal-badge" *ngIf="p.renewalCount > 0">
+                            Renewal Count: {{p.renewalCount}}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="card-actions">
+                    <button class="btn-renew" (click)="openRenewModal(p.id)">Renew Policy</button>
+                    <button class="btn-suspend" 
+                            (click)="toggleStatus(p)"  
+                            [class.btn-activate]="p.policyStatus !== 'ACTIVE'">
+                        {{ p.policyStatus === 'ACTIVE' ? 'Suspend' : 'Activate' }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #noPolicies>
+            <div class="empty-state">No policies found for this user.</div>
+        </ng-template>
+
+    </div>
+
+    <!-- RENEW MODAL -->
+    <div class="modal-overlay" *ngIf="showRenewModal">
+        <div class="modal-content">
+            <h3>Renew Policy #{{selectedPolicyId}}</h3>
+            <p>Enter remarks for this renewal transaction.</p>
+
+            <textarea [(ngModel)]="renewRemarks" rows="3" placeholder="e.g. Payment verified via check..."></textarea>
+
+            <div class="modal-actions">
+                <button class="btn-ghost" (click)="closeModal()">Cancel</button>
+                <button class="btn-confirm" (click)="confirmRenew()">Confirm Renewal</button>
+            </div>
+        </div>
+    </div>
+
+</div>
