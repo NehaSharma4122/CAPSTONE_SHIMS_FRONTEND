@@ -1,0 +1,54 @@
+.plans-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.plan-row {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.info h3 {
+    margin: 0 0 5px;
+    color: #4a148c;
+}
+
+.info p {
+    margin: 0 0 10px;
+    color: #666;
+}
+
+.tags {
+    display: flex;
+    gap: 10px;
+}
+
+.tag {
+    background: #f3e5f5;
+    color: #4a148c;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.btn-enroll {
+    background: #4a148c;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-enroll:hover {
+    background: #7b1fa2;
+}

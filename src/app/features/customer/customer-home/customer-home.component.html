@@ -1,0 +1,50 @@
+<div class="stats-grid">
+      <div class="stat-card blue">
+        <h3>{{activePoliciesCount}}</h3>
+        <p>Active Policies</p>
+      </div>
+      <div class="stat-card orange">
+        <h3>{{pendingPolicies.length}}</h3>
+        <p>Pending Payments</p>
+      </div>
+      <div class="stat-card purple">
+        <h3>{{claimCount}}</h3>
+        <p>Total Claims</p>
+      </div>
+      <div class="stat-card green">
+        <h3>₹{{approvedAmount | number}}</h3>
+        <p>Ready for Payout</p>
+      </div>
+    </div>
+
+    <div class="cart-section mt-4">
+  <h2><span class="icon">🛒</span> Premium Due (Cart)</h2>
+  <p class="sub">Complete payment to activate or renew these policies.</p>
+
+  <div class="cart-items" *ngIf="pendingPolicies.length > 0; else emptyCart">
+    
+    <div class="cart-item" *ngFor="let p of pendingPolicies">
+      <div class="item-info">
+        <h4>{{p.plan.planName}}</h4>
+        <span class="pid">Policy #{{p.id}}</span>
+      </div>
+      
+      <div class="item-details">
+        <span class="badge">PENDING</span>
+      </div>
+
+      <div class="item-cost">
+        ₹{{ p.premiumPaid | number }}
+      </div>
+      
+      <button class="btn-pay" (click)="payPremium(p)">Pay Now</button>
+    </div>
+
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="empty-state">
+      <p>🎉 All premiums paid! No pending dues.</p>
+    </div>
+  </ng-template>
+    </div>

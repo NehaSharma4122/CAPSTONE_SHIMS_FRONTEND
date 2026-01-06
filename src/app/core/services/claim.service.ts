@@ -18,6 +18,9 @@ export class ClaimService {
   submitClaimByHospital(hospitalId: number, policyId: number, data: any) {
     return this.http.post(`${this.apiUrl}/hospitals/${hospitalId}/${policyId}`, data, this.getHeaders());
   }
+  submitClaimByCustomer(userId: number,policyId:number, data:any){
+        return this.http.post(`${this.apiUrl}/users/${userId}/${policyId}`, data, this.getHeaders());
+  }
   // ================= GET REQUESTS =================
 
   // VII. Get All

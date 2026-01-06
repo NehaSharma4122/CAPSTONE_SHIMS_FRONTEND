@@ -1,0 +1,66 @@
+<div class="claims-wrapper">
+  <div class="header">
+    <h2>My Claims History</h2>
+    <button class="btn-sexy" (click)="openModal()">+ New Claim</button>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Claim ID</th>
+          <th>Policy ID</th>
+          <th>Treatment</th>
+          <th>Total Cost</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of claims">
+          <td>#{{c.id}}</td>
+          <td>{{c.policyId}}</td>
+          <td>{{c.diseaseType}}</td>
+          <td>₹{{ (c.operationCost + c.medicineCost + c.postOpsCost) | number }}</td>
+          <td><span class="status-badge" [class]="c.status.toLowerCase()">{{c.status}}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" *ngIf="showModal">
+    <div class="modal-content">
+      <h3>File a New Claim</h3>
+      <form (ngSubmit)="submitClaim()">
+        <div class="form-group">
+          <label>Select Policy</label>
+          <select [(ngModel)]="newClaim.policyId" name="pid" required>
+            <option *ngFor="let p of policies" [value]="p.id">{{p.plan.planName}} (Pol #{{p.id}})</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Disease</label>
+          <input type="text" [(ngModel)]="newClaim.diseaseType" name="dis" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Operation Cost</label>
+            <input type="number" [(ngModel)]="newClaim.operationCost" name="op" required>
+          </div>
+          <div class="form-group">
+            <label>Medicine Cost</label>
+            <input type="number" [(ngModel)]="newClaim.medicineCost" name="med" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Other Cost</label>
+          <input type="number" [(ngModel)]="newClaim.postOpsCost" name="post" required>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-ghost" (click)="showModal=false">Cancel</button>
+          <button type="submit" class="btn-sexy">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

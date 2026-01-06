@@ -1,0 +1,49 @@
+<div class="dashboard-container">
+  
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h3>My Portal</h3>
+    <ul>
+      <li [class.active]="activeTab === 'home'" (click)="activeTab = 'home'">
+        🏠 Dashboard
+      </li>
+      <li [class.active]="activeTab === 'policies'" (click)="activeTab = 'policies'">
+        📜 My Policies
+      </li>
+      <li [class.active]="activeTab === 'plans'" (click)="activeTab = 'plans'">
+        🏥 Buy Insurance
+      </li>
+      <li [class.active]="activeTab === 'claims'" (click)="activeTab = 'claims'">
+        💰 My Claims
+      </li>
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <div class="brand-section">
+        <h1>Welcome, {{userName}}</h1>
+        <p>Manage your health investments</p>
+      </div>
+      <div class="admin-card">
+        <div class="admin-details">
+          <span class="admin-name">Customer #{{userId}}</span>
+        </div>
+        <div class="admin-avatar">{{userName.charAt(0).toUpperCase()}}</div>
+        <button class="btn-logout" (click)="logout()">⏻</button>
+      </div>
+    </div>
+
+    <!-- DYNAMIC CONTENT -->
+    <div class="content-body">
+      <app-customer-home *ngIf="activeTab === 'home'" [userId]="userId"></app-customer-home>
+      <app-customer-policies *ngIf="activeTab === 'policies'" [userId]="userId"></app-customer-policies>
+      <app-customer-plans *ngIf="activeTab === 'plans'" [userId]="userId"></app-customer-plans>
+      <app-customer-claims *ngIf="activeTab === 'claims'" [userId]="userId"></app-customer-claims>
+    </div>
+
+  </div>
+</div>

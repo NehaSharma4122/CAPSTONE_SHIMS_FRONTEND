@@ -13,6 +13,7 @@ import { AgentDashboardComponent } from './features/agent/agent-dashboard/agent-
 import { EnrollPolicyComponent } from './features/agent/enroll-policy/enroll-policy.component';
 import { ClaimOfficerDashboardComponent } from './features/claim-officer/claim-dashboard.component';
 import { HospitalDashboardComponent } from './features/hospital/hospital-dashboard/hospital-dashboard.component';
+import { CustomerDashboardComponent } from './features/customer/customer-dashboard/customer-dashboard.component';
 
 
 export const routes: Routes = [
@@ -69,14 +70,15 @@ export const routes: Routes = [
     component:ContactComponent,
     title: 'Contact Us'
   },
-   { path: 'admin/dashboard', component: AdminDashboardComponent, title: 'Admin Dashboard' },
+  { path: 'admin/dashboard', component: AdminDashboardComponent, title: 'Admin Dashboard' },
   { path: 'info/individuals', component: IndividualsComponent, title: 'For Individuals' },
   { path: 'info/providers', component: ProvidersComponent, title: 'For Providers' },
   { path: 'info/employees', component: EmployeesComponent, title: 'For Employees' },
   { path: 'agent/dashboard', component: AgentDashboardComponent, title: 'Agent Dashboard' }, 
   { path: 'agent/enroll/:id', component: EnrollPolicyComponent, title: 'Enroll Policy' }, 
   { path: 'claimoff/dashboard', component: ClaimOfficerDashboardComponent, title: 'Claims Dashboard' },
-    { path: 'hospital/dashboard', component: HospitalDashboardComponent, title: 'Hospital Dashboard' },
+  { path: 'hospital/dashboard', component: HospitalDashboardComponent, title: 'Hospital Dashboard' },
+  { path: 'customer/dashboard', component: CustomerDashboardComponent, title: 'Customer Dashboard' },
 
   { 
     path: '**', 

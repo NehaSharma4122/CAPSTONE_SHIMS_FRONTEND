@@ -1,0 +1,14 @@
+<h2>Available Insurance Plans</h2>
+    <div class="plans-list">
+      <div class="plan-row" *ngFor="let plan of plans">
+        <div class="info">
+          <h3>{{plan.planName}}</h3>
+          <p>{{plan.description}}</p>
+          <div class="tags">
+            <span class="tag">Premium: ₹{{plan.premiumAmount}}</span>
+            <span class="tag">Cover: {{plan.coverageLimitValue}} {{plan.coverageLimitType}}</span>
+          </div>
+        </div>
+        <button class="btn-enroll" (click)="enroll(plan.id)">Enroll Now</button>
+      </div>
+    </div>

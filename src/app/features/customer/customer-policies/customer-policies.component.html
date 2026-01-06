@@ -1,0 +1,77 @@
+<div class="policies-grid" *ngIf="policies.length > 0; else noPolicies">
+  <div class="policy-card" *ngFor="let p of policies">
+    
+    <!-- Header: Icon, ID, Status -->
+    <div class="card-top">
+      <div class="policy-identity">
+        <div class="icon-box">📄</div>
+        <span class="pid">Policy #{{p.id}}</span>
+      </div>
+      <span class="status-badge" 
+            [class.active]="p.policyStatus === 'ACTIVE'" 
+            [class.suspended]="p.policyStatus === 'SUSPENDED'">
+        {{p.policyStatus}}
+      </span>
+    </div>
+
+    <!-- Title & Description -->
+    <div class="card-content">
+      <h3 class="plan-title">{{p.plan.planName}}</h3>
+      <p class="plan-subtitle">{{p.plan.description}}</p>
+
+      <!-- The Grey Stats Box -->
+      <div class="stats-box">
+        <div class="stat-item">
+          <label>PREMIUM PAID</label>
+          <span class="value">₹{{p.premiumPaid | number}}</span>
+        </div>
+        <div class="stat-item">
+          <label>COVERAGE LIMIT</label>
+          <span class="value">₹{{p.plan.maxCoverageAmount | number}}</span>
+        </div>
+      </div>
+
+      <!-- Dates -->
+      <div class="timeline">
+        <div class="time-row">
+          <span class="lbl">Start:</span>
+          <span class="val">{{p.startDate | date:'mediumDate'}}</span>
+        </div>
+        <div class="time-row">
+          <span class="lbl">Exp:</span>
+          <span class="val highlight-date">{{p.expiryDate | date:'mediumDate'}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="card-actions">
+      <button class="btn-renew" (click)="openRenewModal(p.id)">Renew Policy</button>
+      
+      <button class="btn-toggle" 
+              (click)="toggleStatus(p)"
+              [class.btn-activate]="p.policyStatus !== 'ACTIVE'">
+        {{ p.policyStatus === 'ACTIVE' ? 'Suspend' : 'Activate' }}
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #noPolicies>
+  <div class="empty-state">No policies found for this user.</div>
+</ng-template>
+
+<div class="modal-overlay" *ngIf="showRenewModal">
+    <div class="modal-content">
+        <h3>Renew Policy #{{selectedPolicyId}}</h3>
+        <p>Enter remarks for this renewal transaction.</p>
+
+        <textarea [(ngModel)]="renewRemarks" rows="3" placeholder="e.g. Payment verified via check..."></textarea>
+
+        <div class="modal-actions">
+            <button class="btn-ghost" (click)="closeModal()">Cancel</button>
+            <button class="btn-confirm" (click)="confirmRenew()">Confirm Renewal</button>
+        </div>
+    </div>
+</div>

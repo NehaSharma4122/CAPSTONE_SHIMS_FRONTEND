@@ -49,8 +49,13 @@ export class LoginComponent {
         this.router.navigate(['/claimoff/dashboard']);
         this.cdr.detectChanges();
         break;
+      case 'ROLE_CUSTOMER':
+        this.router.navigate(['/customer/dashboard']);
+        this.cdr.detectChanges();
+        break;
       default:
         this.router.navigate(['/products/plans']); // Customer goes to browse plans
     }
   }
 }
+
