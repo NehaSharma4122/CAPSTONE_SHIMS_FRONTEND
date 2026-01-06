@@ -4,7 +4,6 @@
     background-color: #f4f7f6;
 }
 
-/* Sidebar (Same as before) */
 .sidebar {
     width: 250px;
     background: white;
@@ -35,35 +34,28 @@
     font-weight: 600;
 }
 
-/* --- MAIN CONTENT & TOP BAR --- */
 .main-content {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
-/* --- NEW THIN & CATCHY TOP BAR --- */
-/* --- THICK, CATCHY, CLASSY TOP BAR --- */
+
 .top-bar {
-    /* Thick Height */
     height: 110px;
     
-    /* Classy Deep Blue Gradient Background */
     background: linear-gradient(135deg, #003666 0%, #005691 100%);
     
-    /* Spacing & Layout */
     padding: 0 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     
-    /* Strong Shadow for Depth */
     box-shadow: 0 4px 25px rgba(0, 54, 102, 0.25);
     color: white;
     position: relative;
     z-index: 10;
 }
 
-/* Left Side: Title */
 .brand-section h1 {
     margin: 0;
     font-size: 1.8rem;
@@ -79,13 +71,11 @@
     font-weight: 400;
 }
 
-/* Right Side: Admin Card */
 .admin-card {
     display: flex;
     align-items: center;
     gap: 15px;
     
-    /* "Glass" Effect Background */
     background: rgba(255, 255, 255, 0.1);
     padding: 10px 20px;
     border-radius: 12px;
@@ -130,7 +120,6 @@
     font-size: 1.2rem;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-/* New Top Bar Styles */
 /* .top-bar {
     background: white;
     padding: 15px 40px;
@@ -290,11 +279,9 @@ th {
     font-size: 1.8rem;
 }
 
-/* Grid Layout Fix for Form Rows */
 .form-row-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* Exactly 50% split */
     gap: 60px;
 }
 
@@ -326,7 +313,6 @@ th {
     background: white;
 }
 
-/* Role Selector */
 .role-selector {
     display: flex;
     justify-content: center;
