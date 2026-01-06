@@ -1,0 +1,208 @@
+<div class="container-fluid" *ngIf="!isLoading">
+
+  <!-- =============================== -->
+  <!-- STATE 1: ONBOARDING FORM        -->
+  <!-- =============================== -->
+  <div class="onboard-wrapper" *ngIf="!isOnboarded">
+    <div class="onboard-card">
+      <div class="brand-header">
+        <h1>Welcome to InsurePlus</h1>
+        <p>Complete your hospital profile to join our network.</p>
+      </div>
+      
+      <form (ngSubmit)="submitOnboarding()">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Hospital Name</label>
+            <input type="text" [(ngModel)]="onboardData.name" name="hname" placeholder="Apollo Multispeciality..." required>
+          </div>
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" [(ngModel)]="onboardData.city" name="city" required>
+          </div>
+          <div class="form-group">
+            <label>State</label>
+            <input type="text" [(ngModel)]="onboardData.state" name="state" required>
+          </div>
+          <div class="form-group full">
+            <label>Full Address</label>
+            <textarea [(ngModel)]="onboardData.address" name="addr" rows="2" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>License Number</label>
+            <input type="text" [(ngModel)]="onboardData.licenseNumber" name="lic" required>
+          </div>
+          <div class="form-group">
+            <label>Contact Phone</label>
+            <input type="text" [(ngModel)]="onboardData.contactPhone" name="phone" required>
+          </div>
+          <div class="form-group full">
+            <label>Contact Email</label>
+            <input type="email" [(ngModel)]="onboardData.contactEmail" name="email" required>
+          </div>
+        </div>
+        <button type="submit" class="btn-onboard">Complete Profile</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!-- STATE 2: HOSPITAL DASHBOARD     -->
+  <!-- =============================== -->
+  <div class="dashboard-layout" *ngIf="isOnboarded">
+    
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <h3>Provider Portal</h3>
+      <ul>
+        <li [class.active]="activeTab === 'profile'" (click)="activeTab = 'profile'">🏥 My Profile</li>
+        <li [class.active]="activeTab === 'network'" (click)="activeTab = 'network'">🌐 Manage Network</li>
+        <li [class.active]="activeTab === 'claims'" (click)="activeTab = 'claims'">💰 Claims Console</li>
+      </ul>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+      
+      <!-- THICK TOP BAR -->
+      <div class="top-bar">
+        <div class="brand-section">
+          <h1>{{hospitalProfile.name}}</h1>
+          <p>{{hospitalProfile.city}}, {{hospitalProfile.state}}</p>
+        </div>
+        <div class="admin-card">
+          <div class="admin-details">
+            <span class="admin-name">{{hospitalProfile.licenseNumber}}</span>
+            <span class="admin-email">Authorized Provider</span>
+          </div>
+          <div class="admin-avatar">H</div>
+          <button class="btn-logout" (click)="logout()">⏻</button>
+        </div>
+      </div>
+
+      <div class="content-body">
+
+        <!-- TAB 1: PROFILE & LINKED PLANS -->
+        <div *ngIf="activeTab === 'profile'">
+           <app-hospital-profile 
+                [profile]="hospitalProfile" 
+                [links]="linkedPlans"
+                (unlinkRequest)="unlinkPlan($event)">
+  </app-hospital-profile>
+        </div>
+
+        <!-- TAB 2: MANAGE NETWORK (LINK/UNLINK) -->
+        <div *ngIf="activeTab === 'network'">
+          <div class="section-header">
+            <h2>Network Management</h2>
+            <p>Join insurance plans to accept patients holding these policies.</p>
+          </div>
+
+          <div class="table-card">
+            <table>
+              <thead>
+                <tr>
+                  <th>Plan ID</th>
+                  <th>Plan Name</th>
+                  <th>Coverage</th>
+                  <th>Premium</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let plan of availablePlans">
+                  <td>#{{plan.id}}</td>
+                  <td><strong>{{plan.planName}}</strong></td>
+                  <td>{{plan.coverageLimitValue}} {{plan.coverageLimitType}}</td>
+                  <td>₹{{plan.premiumAmount}}</td>
+                  <td>
+                    <span class="badge" [class.linked]="isPlanLinked(plan.id)" [class.avail]="!isPlanLinked(plan.id)">
+                      {{ isPlanLinked(plan.id) ? 'Linked' : 'Available' }}
+                    </span>
+                  </td>
+                  <td>
+                    <button *ngIf="!isPlanLinked(plan.id)" class="btn-link" (click)="linkPlan(plan.id)">Link Hospital</button>
+                    <button *ngIf="isPlanLinked(plan.id)" class="btn-unlink" (click)="unlinkPlan(plan.id)">Unlink</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 3: CLAIMS CONSOLE -->
+        <div *ngIf="activeTab === 'claims'">
+          <div class="section-header space-between">
+            <h2>Claims History</h2>
+            <button class="btn-sexy" (click)="openClaimModal()">+ Submit New Claim</button>
+          </div>
+
+          <div class="table-card">
+            <table>
+              <thead>
+                <tr>
+                  <th>Claim ID</th>
+                  <th>Policy ID</th>
+                  <th>Disease</th>
+                  <th>Total Cost</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of hospitalClaims">
+                  <td>#{{c.id}}</td>
+                  <td>{{c.policyId}}</td>
+                  <td>{{c.diseaseType}}</td>
+                  <td class="amt">₹{{ (c.operationCost + c.medicineCost + c.postOpsCost) | number }}</td>
+                  <td>
+                    <span class="status-pill" [class]="c.status.toLowerCase()">{{c.status}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="hospitalClaims.length === 0"><td colspan="5" class="text-center">No claims records found.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CLAIM MODAL -->
+  <div class="modal-overlay" *ngIf="showClaimModal">
+    <div class="modal-content">
+      <h3>Submit Medical Claim</h3>
+      <form (ngSubmit)="submitClaim()">
+        <div class="form-group">
+          <label>Patient Policy ID</label>
+          <input type="number" [(ngModel)]="claimData.policyId" name="pid" required placeholder="Enter Policy ID">
+        </div>
+        <div class="form-group">
+          <label>Disease / Treatment</label>
+          <input type="text" [(ngModel)]="claimData.diseaseType" name="dis" required placeholder="e.g. Heart Surgery">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Operation Cost</label>
+            <input type="number" [(ngModel)]="claimData.operationCost" name="op" required>
+          </div>
+          <div class="form-group">
+            <label>Medicine Cost</label>
+            <input type="number" [(ngModel)]="claimData.medicineCost" name="med" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Post-Ops / Other Cost</label>
+          <input type="number" [(ngModel)]="claimData.postOpsCost" name="post" required>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" class="btn-ghost" (click)="showClaimModal=false">Cancel</button>
+          <button type="submit" class="btn-sexy">Submit Claim</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

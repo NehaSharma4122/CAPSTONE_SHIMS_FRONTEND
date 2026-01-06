@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -15,7 +15,7 @@ export class LoginComponent {
   credentials = { email: '', password: '' };
   loading = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private cdr: ChangeDetectorRef) {}
 
   onSubmit() {
     this.loading = true;
@@ -35,15 +35,19 @@ export class LoginComponent {
     switch(role) {
       case 'ROLE_ADMIN':
         this.router.navigate(['/admin/dashboard']);
+        this.cdr.detectChanges();
         break;
       case 'ROLE_HOSPITAL':
         this.router.navigate(['/hospital/dashboard']); 
+        this.cdr.detectChanges();
         break;
       case 'ROLE_AGENT':
         this.router.navigate(['/agent/dashboard']); 
+        this.cdr.detectChanges();
         break;
       case 'ROLE_CLAIMS_OFFICER':
         this.router.navigate(['/claimoff/dashboard']);
+        this.cdr.detectChanges();
         break;
       default:
         this.router.navigate(['/products/plans']); // Customer goes to browse plans

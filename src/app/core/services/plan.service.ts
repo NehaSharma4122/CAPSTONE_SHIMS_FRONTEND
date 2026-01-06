@@ -35,4 +35,8 @@ export class PlanService {
   deletePlan(planId: number) {
     return this.http.delete(`${this.planUrl}/admin/plans/cancel/${planId}`, this.getHeaders());
   }
+
+  getPlanById(planId: number) {
+    return this.http.get<any>(`${this.planUrl}/plans/${planId}`, this.getHeaders());
+  }
 }

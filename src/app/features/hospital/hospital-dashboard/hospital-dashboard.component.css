@@ -1,0 +1,424 @@
+/* --- ONBOARDING STYLES --- */
+.onboard-wrapper {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.onboard-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    width: 700px;
+}
+
+.brand-header h1 {
+    color: #0277bd;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.brand-header p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group.full {
+    grid-column: span 2;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #0277bd;
+    outline: none;
+}
+
+.btn-onboard {
+    width: 100%;
+    background: #0277bd;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btn-onboard:hover {
+    background: #01579b;
+}
+
+/* --- DASHBOARD LAYOUT (Similar to Claim Officer) --- */
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f0f4f8;
+}
+
+.sidebar {
+    width: 250px;
+    background: white;
+    border-right: 1px solid #eee;
+    padding: 20px;
+}
+
+.sidebar h3 {
+    color: #0277bd;
+    margin-bottom: 25px;
+    font-weight: 800;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #555;
+    margin-bottom: 5px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.sidebar li:hover {
+    background: #e1f5fe;
+    color: #0277bd;
+}
+
+.sidebar li.active {
+    background: #0277bd;
+    color: white;
+    box-shadow: 0 4px 10px rgba(2, 119, 189, 0.3);
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* THICK TOP BAR */
+.top-bar {
+    height: 110px;
+    background: linear-gradient(135deg, #0277bd 0%, #0091ea 100%);
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(2, 119, 189, 0.25);
+    color: white;
+}
+
+.brand-section h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.admin-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px 20px;
+    border-radius: 12px;
+}
+
+.admin-name {
+    font-weight: 700;
+    display: block;
+    font-size: 1.1rem;
+}
+
+.admin-email {
+    font-size: 0.8rem;
+    color: #b3e5fc;
+}
+
+.admin-avatar {
+    width: 45px;
+    height: 45px;
+    background: white;
+    color: #0277bd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+.btn-logout {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* CONTENT */
+.content-body {
+    padding: 40px;
+}
+
+.section-header {
+    margin-bottom: 25px;
+}
+
+.section-header.space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-header h2 {
+    color: #333;
+    margin: 0;
+}
+
+.info-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    border-left: 5px solid #0277bd;
+}
+
+.detail-row {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Plan Chips */
+.grid-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.plan-chip {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #333;
+}
+
+.chip-id {
+    color: #0277bd;
+}
+
+.chip-status {
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.btn-icon-del {
+    background: #ffebee;
+    color: #c62828;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Table */
+.table-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background: #f8f9fa;
+    color: #666;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.badge.linked {
+    color: #2e7d32;
+    background: #e8f5e9;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.badge.avail {
+    color: #0277bd;
+    background: #e1f5fe;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.btn-link {
+    background: #0277bd;
+    color: white;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-unlink {
+    background: #fff;
+    color: #c62828;
+    border: 1px solid #c62828;
+    padding: 6px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Status Pills */
+.status-pill {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.submitted {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.approved {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.rejected {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.paid {
+    background: #e0f2f1;
+    color: #00695c;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: white;
+    width: 500px;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 15px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-ghost {
+    background: black;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 5px 15px rgba(229, 114, 0, 0.4);
+    transition: transform 0.2s;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.btn-ghost:hover {
+    transform: scale(1.05);
+}
+
+.btn-sexy {
+    background: #0277bd;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(2, 119, 189, 0.3);
+}

@@ -12,6 +12,7 @@ import { AdminDashboardComponent } from './features/admin/admin-dashboard/admin-
 import { AgentDashboardComponent } from './features/agent/agent-dashboard/agent-dashboard.component';
 import { EnrollPolicyComponent } from './features/agent/enroll-policy/enroll-policy.component';
 import { ClaimOfficerDashboardComponent } from './features/claim-officer/claim-dashboard.component';
+import { HospitalDashboardComponent } from './features/hospital/hospital-dashboard/hospital-dashboard.component';
 
 
 export const routes: Routes = [
@@ -75,6 +76,8 @@ export const routes: Routes = [
   { path: 'agent/dashboard', component: AgentDashboardComponent, title: 'Agent Dashboard' }, 
   { path: 'agent/enroll/:id', component: EnrollPolicyComponent, title: 'Enroll Policy' }, 
   { path: 'claimoff/dashboard', component: ClaimOfficerDashboardComponent, title: 'Claims Dashboard' },
+    { path: 'hospital/dashboard', component: HospitalDashboardComponent, title: 'Hospital Dashboard' },
+
   { 
     path: '**', 
     redirectTo: '' 

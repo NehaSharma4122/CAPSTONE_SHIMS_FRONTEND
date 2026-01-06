@@ -1,0 +1,64 @@
+<div class="profile-container">
+  
+  <!-- Section 1: Hospital Details -->
+  <div class="section-header">
+    <h2>Hospital Overview</h2>
+  </div>
+  
+  <div class="info-card">
+    <div class="detail-row">
+      <span class="label">Address:</span> 
+      <span class="val">{{profile?.address}}</span>
+    </div>
+    <div class="detail-row">
+      <span class="label">Contact:</span> 
+      <span class="val">{{profile?.contactPhone}} | {{profile?.contactEmail}}</span>
+    </div>
+    <div class="detail-row">
+      <span class="label">License:</span> 
+      <span class="val">{{profile?.licenseNumber}}</span>
+    </div>
+  </div>
+
+  <!-- Section 2: Detailed Plans -->
+  <h3 class="mt-5">Active Insurance Plans</h3>
+  <p class="text-muted">You are currently part of the network for these plans.</p>
+
+  <div *ngIf="isLoadingPlans" class="loading-box">Loading Plan Details...</div>
+
+  <div class="plans-grid" *ngIf="!isLoadingPlans">
+    
+    <!-- Detailed Plan Card -->
+    <div class="plan-card" *ngFor="let plan of detailedPlans">
+      <div class="card-top">
+        <span class="plan-id">Plan #{{plan.id}}</span>
+        <span class="status-badge">Active Network</span>
+      </div>
+
+      <h4>{{plan.planName}}</h4>
+      <p class="desc">{{plan.description}}</p>
+
+      <div class="stats-row">
+        <div>
+          <label>Max Coverage</label>
+          <strong>{{plan.coverageLimitValue}} {{plan.coverageLimitType}}</strong>
+        </div>
+        <div>
+          <label>Premium</label>
+          <strong>₹{{plan.premiumAmount | number}}</strong>
+        </div>
+      </div>
+
+      <button class="btn-unlink" (click)="requestUnlink(plan.id)">
+        Unlink from Hospital ✕
+      </button>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="detailedPlans.length === 0">
+      <p>No plans linked yet.</p>
+      <small>Go to "Manage Network" tab to add plans.</small>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,158 @@
+.profile-container {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Info Card */
+.info-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #0277bd;
+}
+
+.detail-row {
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+.label {
+    font-weight: 700;
+    color: #555;
+    margin-right: 10px;
+}
+
+.val {
+    color: #333;
+}
+
+.mt-5 {
+    margin-top: 40px;
+}
+
+.text-muted {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Plans Grid */
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.plan-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+    border-color: #b3e5fc;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.plan-id {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #888;
+}
+
+.status-badge {
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.plan-card h4 {
+    margin: 0 0 10px;
+    color: #0277bd;
+    font-size: 1.2rem;
+}
+
+.desc {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.stats-row label {
+    display: block;
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.stats-row strong {
+    color: #333;
+}
+
+.btn-unlink {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #c62828;
+    color: #c62828;
+    background: white;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-unlink:hover {
+    background: #ffebee;
+}
+
+.loading-box {
+    text-align: center;
+    padding: 20px;
+    color: #0277bd;
+    font-weight: 600;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    background: #fcfcfc;
+    border-radius: 12px;
+    border: 2px dashed #eee;
+    color: #999;
+    grid-column: 1 / -1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
