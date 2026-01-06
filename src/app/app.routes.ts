@@ -11,6 +11,7 @@ import { RegisterComponent } from './features/authentication/register/register.c
 import { AdminDashboardComponent } from './features/admin/admin-dashboard/admin-dashboard';
 import { AgentDashboardComponent } from './features/agent/agent-dashboard/agent-dashboard.component';
 import { EnrollPolicyComponent } from './features/agent/enroll-policy/enroll-policy.component';
+import { ClaimOfficerDashboardComponent } from './features/claim-officer/claim-dashboard.component';
 
 
 export const routes: Routes = [
@@ -72,7 +73,8 @@ export const routes: Routes = [
   { path: 'info/providers', component: ProvidersComponent, title: 'For Providers' },
   { path: 'info/employees', component: EmployeesComponent, title: 'For Employees' },
   { path: 'agent/dashboard', component: AgentDashboardComponent, title: 'Agent Dashboard' }, 
-   { path: 'agent/enroll/:id', component: EnrollPolicyComponent, title: 'Enroll Policy' }, 
+  { path: 'agent/enroll/:id', component: EnrollPolicyComponent, title: 'Enroll Policy' }, 
+  { path: 'claimoff/dashboard', component: ClaimOfficerDashboardComponent, title: 'Claims Dashboard' },
   { 
     path: '**', 
     redirectTo: '' 

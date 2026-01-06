@@ -1,0 +1,137 @@
+<div class="dashboard-container">
+  
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h3>Claims Portal</h3>
+    <ul>
+      <li [class.active]="activeTab === 'all'" (click)="setTab('all')">
+        All Claims
+      </li>
+      <li [class.active]="activeTab === 'submitted'" (click)="setTab('submitted')">
+        📩 Submitted
+      </li>
+      <li [class.active]="activeTab === 'in_review'" (click)="setTab('in_review')">
+        🔍 In Review
+      </li>
+      <li [class.active]="activeTab === 'approved'" (click)="setTab('approved')">
+        ✅ Approved
+      </li>
+      <li [class.active]="activeTab === 'paid'" (click)="setTab('paid')">
+        💰 Paid
+      </li>
+      <li [class.active]="activeTab === 'rejected'" (click)="setTab('rejected')">
+        ❌ Rejected
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    
+    <!-- THICK CLASSY TOP BAR -->
+    <div class="top-bar">
+      <div class="brand-section">
+        <h1>Claims Console</h1>
+        <p>Review & Process Reimbursements</p>
+      </div>
+      <div class="admin-card">
+        <div class="admin-details">
+          <span class="admin-name">{{officerName}}</span>
+          <span class="admin-email">{{officerEmail}}</span>
+        </div>
+        <div class="admin-avatar">{{officerName.charAt(0).toUpperCase()}}</div>
+        <button class="btn-logout" (click)="logout()">⏻</button>
+      </div>
+    </div>
+
+    <div class="content-body">
+      
+      <!-- SEARCH HEADER -->
+      <div class="content-header">
+        <h2>
+          {{activeTab | titlecase}} Claims 
+          <span class="count">({{claims.length}})</span>
+        </h2>
+        <div class="search-box">
+          <input type="number" placeholder="Search User ID or Claim ID..." [(ngModel)]="searchId" (keyup.enter)="search()">
+          <button class="btn-search" (click)="search()">Search</button>
+        </div>
+      </div>
+
+      <!-- CLAIMS TABLE -->
+      <div class="table-card">
+        <table *ngIf="claims.length > 0; else noData">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Details (User/Policy)</th>
+              <th>Disease & Treatment</th>
+              <th>Total Cost</th>
+              <th>Status</th>
+              <th>Workflow Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of claims">
+              <td><strong>#{{c.id}}</strong></td>
+              <td>
+                <div class="meta-info">
+                  <span *ngIf="c.userId"><strong>User: {{c.userId}}</strong></span>
+                  <span *ngIf="!c.userId && c.hospitalId"><strong>Hosp ID: {{c.hospitalId}}</strong></span>
+                  <span>Policy: #{{c.policyId}}</span>
+                </div>
+              </td>
+              <td>
+                <div class="disease-info">
+                  <span class="disease">{{c.diseaseType}}</span>
+                </div>
+              </td>
+              <td class="amt-col">
+                <!-- Summing up costs for display -->
+                ₹{{ (c.operationCost + c.medicineCost + c.postOpsCost) | number }}
+              </td>
+              <td>
+                <span class="status-badge" [ngClass]="getStatusClass(c.status)">
+                  {{c.status}}
+                </span>
+              </td>
+              
+              <!-- ACTION BUTTONS BASED ON STATUS -->
+              <td class="actions-cell">
+                
+                <!-- 1. SUBMITTED -> REVIEW -->
+                <button *ngIf="c.status === 'SUBMITTED'" 
+                        class="btn-action btn-review" 
+                        (click)="moveToReview(c.id)">
+                  Start Review
+                </button>
+
+                <!-- 2. IN REVIEW -> APPROVE / REJECT -->
+                <div *ngIf="c.status === 'IN_REVIEW'" class="btn-group">
+                  <button class="btn-action btn-approve" (click)="approveClaim(c.id)">Approve</button>
+                  <button class="btn-action btn-reject" (click)="rejectClaim(c.id)">Reject</button>
+                </div>
+
+                <!-- 3. APPROVED -> PAID -->
+                <button *ngIf="c.status === 'APPROVED'" 
+                        class="btn-action btn-pay" 
+                        (click)="processPayment(c.id)">
+                  Process Payment
+                </button>
+
+                <!-- 4. FINAL STATES -->
+                <span *ngIf="c.status === 'PAID'" class="final-text text-green">Paid Out</span>
+                <span *ngIf="c.status === 'REJECTED'" class="final-text text-red">Closed</span>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ng-template #noData>
+          <div class="empty-state">No claims found in this category.</div>
+        </ng-template>
+      </div>
+
+    </div>
+  </div>
+</div>

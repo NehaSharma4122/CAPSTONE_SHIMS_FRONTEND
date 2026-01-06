@@ -37,13 +37,13 @@ export class LoginComponent {
         this.router.navigate(['/admin/dashboard']);
         break;
       case 'ROLE_HOSPITAL':
-        this.router.navigate(['/hospital/dashboard']); // Future placeholder
+        this.router.navigate(['/hospital/dashboard']); 
         break;
       case 'ROLE_AGENT':
-        this.router.navigate(['/agent/dashboard']); // Future placeholder
+        this.router.navigate(['/agent/dashboard']); 
         break;
       case 'ROLE_CLAIMS_OFFICER':
-        this.router.navigate(['/claimoff/dashboard']); // Future placeholder
+        this.router.navigate(['/claimoff/dashboard']);
         break;
       default:
         this.router.navigate(['/products/plans']); // Customer goes to browse plans

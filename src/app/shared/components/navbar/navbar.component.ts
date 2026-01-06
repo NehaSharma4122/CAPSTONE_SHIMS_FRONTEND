@@ -36,6 +36,8 @@ export class NavbarComponent implements OnInit {
     if(role === 'ROLE_ADMIN') this.router.navigate(['/admin/dashboard']);
     else if(role === 'ROLE_CUSTOMER') this.router.navigate(['/products/plans']);
     else if(role === 'ROLE_AGENT') this.router.navigate(['/agent/dashboard']);
+    else if(role === 'ROLE_CLAIMS_OFFICER') this.router.navigate(['/claimoff/dashboard']);
+
 
     else this.router.navigate(['/']); 
   }
