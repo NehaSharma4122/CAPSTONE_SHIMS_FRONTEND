@@ -5,19 +5,22 @@ import { AdminService } from '../../../core/services/admin.service';
 import { AuthService } from '../../../core/services/auth.service'; // Import AuthService
 import { ManagePlansComponent } from '../manage-plans/manage-plans.component';
 import { ManagePoliciesComponent } from '../manage-policies/manage-policies.component';
+import { AdminAnalyticsComponent } from "../admin-analytics/admin-analytics.component";
+import { ChangePasswordComponent } from '../../authentication/change-password/change-password.component';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule,ManagePlansComponent,ManagePoliciesComponent],
+  imports: [CommonModule, FormsModule, ManagePlansComponent, ManagePoliciesComponent, AdminAnalyticsComponent, ChangePasswordComponent],
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
-  activeTab: string = 'users';
+  activeTab: string = 'analytics';
   users: any[] = [];
-  adminName: string = 'Admin'; // Default name
+  adminName: string = 'Admin'; 
   adminEmail: string = 'admin@insureplus.com'
+  showPasswordModal: boolean = false;
 
   // Creation Form Data
   creationType: 'agent' | 'claim' | 'hospital' = 'agent';
@@ -101,5 +104,9 @@ export class AdminDashboardComponent implements OnInit {
       },
       error: (err) => alert('Failed to create user.')
     });
+  }
+
+   openPasswordModal() {
+    this.showPasswordModal = true;
   }
 }

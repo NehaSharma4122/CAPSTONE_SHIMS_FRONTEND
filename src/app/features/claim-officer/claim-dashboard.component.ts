@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { ClaimService } from '../../core/services/claim.service';
+import { ChangePasswordComponent } from '../authentication/change-password/change-password.component';
 
 @Component({
   selector: 'app-claim-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,ChangePasswordComponent],
   templateUrl: './claim-dashboard.component.html',
   styleUrls: ['./claim-dashboard.component.css']
 })
@@ -16,8 +17,8 @@ export class ClaimOfficerDashboardComponent implements OnInit {
   
   officerName: string = 'Officer';
   officerEmail: string = '';
-  
-  // Tabs: 'all', 'submitted', 'in_review', 'approved', 'paid', 'rejected'
+  showPasswordModal: boolean = false;
+
   activeTab: string = 'all'; 
   
   claims: any[] = [];
@@ -131,4 +132,8 @@ export class ClaimOfficerDashboardComponent implements OnInit {
       default: return 'badge-gray';
     }
   }
+  openPasswordModal() {
+    this.showPasswordModal = true;
+  }
+
 }

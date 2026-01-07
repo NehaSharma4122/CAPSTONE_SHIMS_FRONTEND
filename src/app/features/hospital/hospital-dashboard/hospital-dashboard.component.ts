@@ -7,11 +7,12 @@ import { PlanService } from '../../../core/services/plan.service';
 import { ClaimService } from '../../../core/services/claim.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { HospitalProfileComponent } from '../hospital-profile/hospital-profile.component';
+import { ChangePasswordComponent } from '../../authentication/change-password/change-password.component';
 
 @Component({
   selector: 'app-hospital-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule, HospitalProfileComponent],
+  imports: [CommonModule, FormsModule, HospitalProfileComponent, ChangePasswordComponent],
   templateUrl: './hospital-dashboard.component.html',
   styleUrls: ['./hospital-dashboard.component.css']
 })
@@ -30,7 +31,7 @@ export class HospitalDashboardComponent implements OnInit {
 
   // Forms
   onboardData = { name: '', city: '', state: '', address: '', licenseNumber: '', contactEmail: '', contactPhone: '' };
-  
+  showPasswordModal: boolean = false;
   claimData = { policyId: null, diseaseType: '', operationCost: 0, medicineCost: 0, postOpsCost: 0 };
   showClaimModal: boolean = false;
 
@@ -154,5 +155,8 @@ export class HospitalDashboardComponent implements OnInit {
       },
       error: (err) => alert('Failed to submit claim. Check Policy ID.')
     });
+  }
+  openPasswordModal() {
+    this.showPasswordModal = true;
   }
 }

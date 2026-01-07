@@ -1,0 +1,50 @@
+<div class="analytics-wrapper">
+  
+  <div class="section-header">
+    <h2>System Analytics</h2>
+    <p>Real-time overview of platform performance.</p>
+  </div>
+
+  <!-- ROW 1: TOTALS CARDS -->
+  <div class="stats-row">
+    <div class="stat-card blue">
+      <div class="icon">👥</div>
+      <div class="info">
+        <h3>{{totalUsers}}</h3>
+        <span>Total Users</span>
+      </div>
+    </div>
+
+    <div class="stat-card green">
+      <div class="icon">📋</div>
+      <div class="info">
+        <h3>{{totalPlans}}</h3>
+        <span>Active Plans</span>
+      </div>
+    </div>
+
+    <div class="stat-card purple">
+      <div class="icon">📑</div>
+      <div class="info">
+        <h3>{{totalClaims}}</h3>
+        <span>Total Claims</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 2: CHARTS -->
+  <div class="charts-row">
+    
+    <!-- User Pie Chart -->
+    <div class="chart-card">
+      <canvas id="userChart"></canvas>
+    </div>
+
+    <!-- Claims Bar Chart -->
+    <div class="chart-card wide">
+      <canvas id="claimChart"></canvas>
+    </div>
+
+  </div>
+
+</div>

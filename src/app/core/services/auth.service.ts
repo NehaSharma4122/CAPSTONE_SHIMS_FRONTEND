@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, tap } from 'rxjs';
 
@@ -44,6 +44,23 @@ export class AuthService {
     localStorage.clear();
     this.isLoggedInSubject.next(false);
     this.router.navigate(['/auth/login']);
+  }
+  changePassword(data: any) {
+    const token = localStorage.getItem('token');
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post(
+      `${this.authUrl}/change-password`, 
+      data, 
+      { 
+        headers: headers,
+        responseType: 'text' // <--- CRITICAL FIX: Tells Angular not to parse JSON
+      }
+    );
   }
 
   // Helper to get Role

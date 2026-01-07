@@ -14,7 +14,6 @@ import { AuthService } from '../../../core/services/auth.service';
 export class LoginComponent {
   credentials = { email: '', password: '' };
   loading = false;
-
   constructor(private authService: AuthService, private router: Router, private cdr: ChangeDetectorRef) {}
 
   onSubmit() {
@@ -22,6 +21,7 @@ export class LoginComponent {
     this.authService.login(this.credentials).subscribe({
       next: (res) => {
         this.redirectUser(res.role);
+        this.cdr.detectChanges();
       },
       error: (err) => {
         alert('Login failed! Please check credentials.');

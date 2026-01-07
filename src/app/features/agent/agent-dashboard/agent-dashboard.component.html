@@ -8,6 +8,11 @@
       <li [class.active]="activeTab === 'manage'" (click)="activeTab = 'manage'">
         <span class="icon">⚙️</span> Manage Customers
       </li>
+      <div class="sidebar-footer">
+      <button class="footer-link" (click)="openPasswordModal()">
+         Change Password
+      </button>
+    </div>
     </ul>
   </div>
   <div class="main-content">
@@ -68,4 +73,8 @@
       <app-manage-user-policies *ngIf="activeTab === 'manage'"></app-manage-user-policies>
     </div>
   </div>
+   <app-change-password 
+    *ngIf="showPasswordModal" 
+    (close)="showPasswordModal = false">
+  </app-change-password>
 </div>

@@ -5,11 +5,12 @@ import { Router, RouterModule } from '@angular/router';
 import { PlanService } from '../../../core/services/plan.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { ManageUserPoliciesComponent } from '../manage-user-policies/manage-user-policies.component';
+import { ChangePasswordComponent } from '../../authentication/change-password/change-password.component';
 
 @Component({
   selector: 'app-agent-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule,RouterModule,ManageUserPoliciesComponent],
+  imports: [CommonModule, FormsModule,RouterModule,ManageUserPoliciesComponent,ChangePasswordComponent],
   templateUrl: './agent-dashboard.component.html',
   styleUrls: ['./agent-dashboard.component.css']
 })
@@ -20,6 +21,7 @@ export class AgentDashboardComponent implements OnInit {
   plans: any[] = [];
   filteredPlans: any[] = [];
   searchTerm: string = '';
+  showPasswordModal: boolean = false;
 
   constructor(
     private planService: PlanService,
@@ -61,5 +63,9 @@ export class AgentDashboardComponent implements OnInit {
 
   goToEnroll(planId: number) {
     this.router.navigate(['/agent/enroll', planId]);
+  }
+
+  openPasswordModal() {
+    this.showPasswordModal = true;
   }
 }

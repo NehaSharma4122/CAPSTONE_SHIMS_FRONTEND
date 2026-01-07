@@ -267,3 +267,51 @@
 .btn-enroll:hover {
     background: #ef6c00;
 }
+/* ... existing styles ... */
+
+/* Sidebar Layout Update */
+.sidebar {
+  width: 250px; 
+  background: white; 
+  border-right: 1px solid #eee; 
+  padding: 20px; 
+  
+  /* Make sidebar a flex column so footer sits at bottom */
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar ul {
+  list-style: none; 
+  padding: 0; 
+  flex: 1; /* Pushes footer down */
+}
+
+/* Footer Link Style */
+.sidebar-footer {
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  margin-top: 20px;
+}
+
+.footer-link {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 10px 15px;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-link:hover {
+  background: #f0f4f8;
+  color: #003666; /* Primary Blue */
+}

@@ -23,6 +23,11 @@
         ❌ Rejected
       </li>
     </ul>
+    <div class="sidebar-footer">
+      <button class="footer-link" (click)="openPasswordModal()">
+        Change Password
+      </button>
+    </div>
   </div>
 
   <div class="main-content">
@@ -134,4 +139,8 @@
 
     </div>
   </div>
+   <app-change-password 
+    *ngIf="showPasswordModal" 
+    (close)="showPasswordModal = false">
+  </app-change-password>
 </div>

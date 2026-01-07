@@ -17,6 +17,12 @@
         💰 My Claims
       </li>
     </ul>
+     <div class="sidebar-footer">
+      <button class="footer-link" (click)="openPasswordModal()">
+         Change Password
+      </button>
+      <!-- (Logout is handled in Top Bar, but you can add it here too if you want) -->
+    </div>
   </div>
 
   <!-- MAIN CONTENT -->
@@ -46,4 +52,9 @@
     </div>
 
   </div>
+  <app-change-password 
+    *ngIf="showPasswordModal" 
+    (close)="showPasswordModal = false">
+  </app-change-password>
+
 </div>
