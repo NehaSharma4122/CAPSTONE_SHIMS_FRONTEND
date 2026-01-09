@@ -45,9 +45,12 @@ export class AuthService {
     this.isLoggedInSubject.next(false);
     this.router.navigate(['/auth/login']);
   }
+  
   changePassword(data: any) {
     const token = localStorage.getItem('token');
-    
+    if (!token) {
+        throw new Error("No login token found");
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
