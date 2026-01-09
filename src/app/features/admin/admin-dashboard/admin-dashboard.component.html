@@ -61,7 +61,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let u of users">
-                <td><strong>#{{u.userId}}</strong></td>
+                <td><strong>{{u.userId}}</strong></td>
                 <td>
                   <div class="user-info">
                     <div class="avatar">{{u.username.charAt(0).toUpperCase()}}</div>
@@ -72,7 +72,7 @@
                 <td><span class="role-badge" [ngClass]="u.role">{{u.role}}</span></td>
                 <td class="actions-cell">
                   <button class="btn-outline-sm" (click)="openRoleModal(u)">Change Role</button>
-                  <button class="btn-icon delete" (click)="deleteUser(u.userId)">🗑️</button>
+                  <button class="btn-icon delete" (click)="deleteUser(u.userId)" [disabled]="u.role === 'ROLE_ADMIN'">🗑️</button>
                 </td>
               </tr>
             </tbody>
