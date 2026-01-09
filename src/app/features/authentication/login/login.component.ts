@@ -17,6 +17,9 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router, private cdr: ChangeDetectorRef) {}
 
   onSubmit() {
+     if (!this.credentials.email || !this.credentials.password) {
+      return;
+    }
     this.loading = true;
     this.authService.login(this.credentials).subscribe({
       next: (res) => {

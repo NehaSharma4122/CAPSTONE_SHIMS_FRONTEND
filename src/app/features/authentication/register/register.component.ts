@@ -17,6 +17,9 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
+    if (!this.user.username || !this.user.email || !this.user.password) {
+      return;
+    }
     this.authService.register(this.user).subscribe({
       next: () => {
         alert('Registration successful! Please login.');

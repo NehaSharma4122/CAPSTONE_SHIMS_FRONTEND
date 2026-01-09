@@ -5,20 +5,35 @@
       <p>Join InsurePlus for comprehensive coverage</p>
     </div>
 
-    <form (ngSubmit)="onSubmit()">
+    <form #registerForm="ngForm" (ngSubmit)="registerForm.form.valid && onSubmit()" novalidate>
       <div class="form-group">
         <label>Username</label>
-        <input type="text" [(ngModel)]="user.username" name="username" class="modern-input" required>
+        <input type="text" [(ngModel)]="user.username" name="username" class="modern-input" required #username="ngModel" [class.input-error]="username.invalid && (username.touched || registerForm.submitted)">
+        <div *ngIf="username.invalid && (username.touched || registerForm.submitted)" class="validation-error">
+          Required username
+        </div>
       </div>
 
       <div class="form-group">
         <label>Email Address</label>
-        <input type="email" [(ngModel)]="user.email" name="email" class="modern-input" required>
+        <input type="email" [(ngModel)]="user.email" name="email" class="modern-input" required email
+          #email="ngModel"
+          [class.input-error]="email.invalid && (email.touched || registerForm.submitted)">
+        <div *ngIf="email.invalid && (email.touched || registerForm.submitted)" class="validation-error">
+          <span *ngIf="email.errors?.['required']">Required email</span>
+          <span *ngIf="email.errors?.['email']">Invalid email format</span>
+        </div>
       </div>
 
       <div class="form-group">
         <label>Password</label>
-        <input type="password" [(ngModel)]="user.password" name="password" class="modern-input" required>
+        <input type="password" [(ngModel)]="user.password" name="password" class="modern-input" required minlength="6"
+          #password="ngModel"
+          [class.input-error]="password.invalid && (password.touched || registerForm.submitted)">
+        <div *ngIf="password.invalid && (password.touched || registerForm.submitted)" class="validation-error">
+          <span *ngIf="password.errors?.['required']">Required password</span>
+          <span *ngIf="password.errors?.['minlength']">Password must be at least 6 characters</span>
+        </div>
       </div>
 
       <button type="submit" class="btn-sexy full-width">Sign Up</button>

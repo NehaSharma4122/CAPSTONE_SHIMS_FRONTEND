@@ -72,3 +72,15 @@
     font-weight: 700;
     text-decoration: none;
 }
+.validation-error {
+    color: #dc3545; 
+    font-size: 0.85rem;
+    margin-top: 5px;
+    text-align: left;
+    font-weight: 500;
+}
+
+.modern-input.input-error {
+    border-color: #dc3545;
+    background-color: #fff8f8; /* Very light red background */
+}
